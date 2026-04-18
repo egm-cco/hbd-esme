@@ -367,33 +367,40 @@
         return interval;
     }
 
-    // ========== CONTENIDO: 7 MENSAJES DE SABIDURÍA, APRECIO Y CARIÑO ==========
+    // ========== CONTENIDO: 7 MENSAJES CON TÍTULOS ÚNICOS ==========
     const pagesData = [
         {
+            title: "🌟 Un nuevo viaje comienza",
             message: `Hoy el mundo se viste de fiesta porque alguien extraordinario está de cumpleaños. Ten la certeza de que cada día es una oportunidad para crecer, para amar y para ser feliz. La vida es un viaje hermoso, y tú eres una viajera llena de luz.`,
             extra: `<div class="icon-badge"><i class="fas fa-sun"></i><i class="fas fa-heart"></i><i class="fas fa-star"></i></div><div class="cursive-quote"><i class="fas fa-comment-dots"></i><span>“Que tu día brille como el sol y tu corazón se llene de alegría.”</span></div>`
         },
         {
+            title: "🌸 La belleza de lo simple",
             message: `La verdadera sabiduría no está en saberlo todo, sino en reconocer la belleza de lo simple. Valora cada sonrisa, cada abrazo, cada instante de paz. Tú tienes el don de hacer sentir bien a quienes t rodean. Gracias por existir.`,
             extra: `<div class="photo-showcase"><div class="photo-memory"><img src="esme.jpeg"><p>Sonrisa genuina</p></div></div>`
         },
         {
+            title: "💧 Fluir como el río",
             message: `Como el río que fluye sin miedo, permítete sentir, equivocarte y aprender. Cada experiencia te ha traído hasta donde estás, más fuerte y más sabia. No hay prisa: la vida no es una carrera, es un jardín para cultivar con paciencia y sabiduría.`,
             extra: `<div class="cursive-quote"><i class="fas fa-water"></i><span>“Lo importante no es el destino, sino el coraje de seguir adelante. ¡Eres increíble!”</span></div><div class="icon-badge"><i class="fas fa-feather-alt"></i><i class="fas fa-dove"></i></div>`
         },
         {
+            title: "🕯️ Luz que ilumina",
             message: `Tu luz ilumina más de lo que imaginas. Como un faro en la noche, guías a quienes te rodean con tu autenticidad. Nunca dudes del impacto positivo que tienes en este mundo. Eres necesaria, eres valiosa, eres amor.`,
             extra: `<div class="icon-badge"><i class="fas fa-lightbulb"></i><i class="fas fa-hand-sparkles"></i><i class="fas fa-heart"></i></div><div class="cursive-quote"><i class="fas fa-crown"></i><span>“Admiro tu fuerza y la forma en que iluminas todo a tu paso.”</span></div>`
         },
         {
+            title: "🌷 Momentos que atesoramos",
             message: `Los momentos contigo son como pétalos de flor: breves pero inolvidables. Gracias por cada risa compartida, por cada palabra, por cada gesto sincero. Que la vida te devuelva todo el cariño que regalas.`,
             extra: `<div class="photo-showcase"><div class="photo-memory"><img src="esme2.jpeg"><p>Alegría, Amistad</p></div></div>`
         },
         {
+            title: "🌱 Resiliencia que florece",
             message: `Incluso en los momentos difíciles, has florecido con una fortaleza admirable. Tu resiliencia, tu humor y esa forma tan tuya de ver la vida son un regalo para todos. Sigue adelante, que lo mejor está por venir.`,
             extra: `<div class="cursive-quote"><i class="fas fa-seedling"></i><span>“Eres como una flor que crece incluso en tierra firme: fuerte y hermosa.”</span></div><div class="icon-badge"><i class="fas fa-fist-raised"></i><i class="fas fa-shield-alt"></i></div>`
         },
         {
+            title: "✨ Eres única e irrepetible",
             message: `Recuerda que el universo entero conspiró para que hoy existas. Eres única, irrepetible y autentica. Que cada amanecer te traiga la certeza de q la vida es un regalo y tú eres su mejor versión. ¡Feliz cumpleaños, Esme maravillosa!`,
             extra: `<div class="icon-badge"><i class="fas fa-star"></i><i class="fas fa-moon"></i><i class="fas fa-gift"></i></div><div style="text-align:center; margin-top:12px; font-size:1.6rem;">🎂✨💖🎉</div><div class="cursive-quote"><i class="fas fa-heart"></i><span>“Que nunca dejes de brillar. Disfruta tu día, te lo mereces todo. Te quiero mucho mucho mucho!!!♥☺♥☺.”</span></div>`
         }
@@ -419,7 +426,7 @@
         const pageHtml = `
             <div class="page page-enter" id="activePage" style="position: relative;">
                 <div class="page-content">
-                    <h2><i class="fas fa-feather-alt"></i> Para ti, con todo mi corazón</h2>
+                    <h2><i class="fas fa-feather-alt"></i> ${page.title}</h2>
                     <p>${page.message}</p>
                     ${page.extra}
                 </div>
@@ -575,7 +582,6 @@
     renderPage(0);
 
     // ========== MÚSICA DESDE URL EXTERNA ==========
-    // 👇 CAMBIA ESTA URL POR LA DE TU CANCIÓN FAVORITA
     const MUSIC_URL = 'yellow.mp3';
     
     let audioElement = null;
@@ -588,7 +594,6 @@
             audioElement = new Audio(MUSIC_URL);
             audioElement.loop = true;
             audioElement.volume = 0.35;
-            // Para que pueda reproducirse automáticamente después de la interacción del usuario
             audioElement.load();
         }
     }
@@ -597,7 +602,6 @@
         initAudio();
         audioElement.play().catch(err => {
             console.log('Error al reproducir:', err);
-            // Si falla, intentamos de nuevo con contexto de usuario
             musicActive = false;
             musicIcon.className = 'fas fa-music';
             musicBtn.style.background = '#f2a0c1';
@@ -625,10 +629,8 @@
         }
     });
     
-    // Precarga del audio para que esté listo cuando el usuario haga clic
     initAudio();
     
-    // Prevenir arrastre de imágenes
     document.addEventListener('dragstart', (e) => { if(e.target.tagName === 'IMG') e.preventDefault(); });
     
     document.addEventListener('touchstart', (e) => {
